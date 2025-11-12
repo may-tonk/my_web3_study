@@ -9,7 +9,7 @@ contract const{
     
     address immutable _ad;
     uint256 public immutable  num2;//可以声明后使用，但是赋值后就不可以改变
-    //immutable 变量在 Solidity 里是 只允许赋值一次 的，并且只能在以下两种地方赋值：
+    //immutable 变量在 Solidity 里是 只允许赋值一次 的，并且只能在以下两种地方赋值：\
     //1.声明时赋值
     //2.构造函数（constructor）中赋值
 
