@@ -18,15 +18,16 @@ module.exports = {
   solidity: "0.8.28",
   networks:{
     sepolia:{
-      url:sepolia_url,
-      accounts:[my_key],
-      chainId:11155111
+      url:sepolia_url,//alchemy中的url
+      accounts:[my_key],//钱包私钥
+      chainId:11155111//network ID
     }
   },
 
+
     etherscan: {
     
-      apiKey:MY_API_KEY
+      apiKey:MY_API_KEY//来自https://etherscan.io/apidashboard
       
       
     }
