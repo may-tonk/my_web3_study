@@ -4,7 +4,7 @@ pragma solidity ^0.8.24;
 
 contract eventTest{
     event Transfer(address indexed from,uint256 amount,address indexed to);//这是跟踪交易
-
+    
 
     mapping (address => uint) public _balance;//对应地址的资金
 
