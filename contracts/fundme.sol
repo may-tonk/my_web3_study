@@ -9,6 +9,9 @@ import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interf
 contract fundme{
     uint256 public minnal = 1e18;
     address[] public funders;
+
+    constructor(){};
+
     function fund() public payable{
         require(getconversion(msg.value)>=minnal,"send last 1 ETH");
         funders.push(msg.sender);
