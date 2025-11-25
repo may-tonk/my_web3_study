@@ -4,7 +4,7 @@ module.exports= async({getNamedAccounts,deployments})=>{
     const firstAccount = (await getNamedAccounts()).firstAccount
     const deploy = deployments.deploy//获取deployments中的deploy
 
-    await deploy("AggregatorV3Interface",{
+    await deploy("MockV3Aggregator",{
         from:firstAccount,
         args:[8,300000000000],
         log:true
