@@ -1,3 +1,5 @@
+const {DEMICAL,INIT_VALUE} = require("../hlper-hardhat-config")
+
 module.exports= async({getNamedAccounts,deployments})=>{
 
 
@@ -6,7 +8,7 @@ module.exports= async({getNamedAccounts,deployments})=>{
 
     await deploy("MockV3Aggregator",{
         from:firstAccount,
-        args:[8,300000000000],
+        args:[DEMICAL,INIT_VALUE],
         log:true
     })
 
