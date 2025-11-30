@@ -9,8 +9,11 @@ import {AggregatorV3Interface} from "@chainlink/contracts/src/v0.8/shared/interf
 contract fundme{
     uint256 public minnal = 1e18;
     address[] public funders;
-    constructor() payable{}
+    AggregatorV3Interface public datafeed;
 
+    constructor(address datafeedadd){
+        datafeed = AggregatorV3Interface(datafeedadd);
+    }
 
     function fund() public payable{
         require(getconversion(msg.value)>=minnal,"send last 1 ETH");
@@ -20,9 +23,8 @@ contract fundme{
     // 获取 ETH / USD 价格
     function getprice() public view returns (uint256) {
         // Chainlink ETH/USD 预言机地址（Sepolia 测试网）
-        AggregatorV3Interface pricefeed = AggregatorV3Interface(
-            0x694AA1769357215DE4FAC081bf1f309aDC325306
-        );
+        AggregatorV3Interface pricefeed = datafeed /*AggregatorV3Interface(
+            0x694AA1769357215DE4FAC081bf1f309aDC325306)*/;
 
         // 获取最新一轮价格数据
         // latestRoundData() 返回五个值，我们只需要第二个 price
@@ -43,9 +45,8 @@ contract fundme{
 
     // 获取 Chainlink Aggregator 的版本号
     function getversion() public view returns (uint256) {
-        AggregatorV3Interface pricefeed = AggregatorV3Interface(
-            0x694AA1769357215DE4FAC081bf1f309aDC325306
-        );
+        AggregatorV3Interface pricefeed = datafeed/*AggregatorV3Interface(
+            0x694AA1769357215DE4FAC081bf1f309aDC325306)*/;
         return pricefeed.version();
     }
     receive() external payable {
