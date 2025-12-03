@@ -1,0 +1,39 @@
+{
+  "language": "Solidity",
+  "sources": {
+    "@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol": {
+      "content": "// SPDX-License-Identifier: MIT\npragma solidity ^0.8.0;\n\n// solhint-disable-next-line interface-starts-with-i\ninterface AggregatorV3Interface {\n  function decimals() external view returns (uint8);\n\n  function description() external view returns (string memory);\n\n  function version() external view returns (uint256);\n\n  function getRoundData(\n    uint80 _roundId\n  ) external view returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);\n\n  function latestRoundData()\n    external\n    view\n    returns (uint80 roundId, int256 answer, uint256 startedAt, uint256 updatedAt, uint80 answeredInRound);\n}\n"
+    },
+    "contracts/fundme.sol": {
+      "content": "// SPDX-License-Identifier: MIT\r\npragma solidity ^0.8.24;\r\n\r\n// 从 Chainlink 导入价格数据接口\r\nimport {AggregatorV3Interface} from \"@chainlink/contracts/src/v0.8/shared/interfaces/AggregatorV3Interface.sol\";\r\n\r\n// 定义一个名为 fundyou 的库（library）\r\n// 库里面封装了一些与价格转换相关的函数\r\ncontract fundme{\r\n    uint256 public minnal = 1e18;\r\n    address[] public funders;\r\n    AggregatorV3Interface public datafeed;\r\n\r\n    constructor(address datafeedadd){\r\n        datafeed = AggregatorV3Interface(datafeedadd);\r\n    }\r\n\r\n    function fund() public payable{\r\n        require(getconversion(msg.value)>=minnal,\"send last 1 ETH\");\r\n        funders.push(msg.sender);\r\n\r\n    }\r\n    // 获取 ETH / USD 价格\r\n    function getprice() public view returns (uint256) {\r\n        // Chainlink ETH/USD 预言机地址（Sepolia 测试网）\r\n        AggregatorV3Interface pricefeed = datafeed /*AggregatorV3Interface(\r\n            0x694AA1769357215DE4FAC081bf1f309aDC325306)*/;\r\n\r\n        // 获取最新一轮价格数据\r\n        // latestRoundData() 返回五个值，我们只需要第二个 price\r\n        (, int256 price, , , ) = pricefeed.latestRoundData();\r\n\r\n        // Chainlink 返回的 ETH/USD 价格精度是 8 位小数（即 1e8）\r\n        // 这里乘上 1e10，把它转换成 1e18 的形式（和以太币精度保持一致）\r\n        return uint256(price * 1e10);\r\n    }\r\n\r\n    // 把 ETH 数量转换成等值的 USD\r\n    function getconversion(uint256 ethAmount) public view returns (uint256) {\r\n        uint256 ethprice = getprice(); // 获取当前 1 ETH 的美元价格\r\n        // 计算：ETH 数量 × ETH 价格 / 1e18（因为 ETH 的单位是 Wei）\r\n        uint256 ethusd = (ethprice * ethAmount) / 1e18;\r\n        return ethusd; // 返回等值的 USD 金额\r\n    }\r\n\r\n    // 获取 Chainlink Aggregator 的版本号\r\n    function getversion() public view returns (uint256) {\r\n        AggregatorV3Interface pricefeed = datafeed/*AggregatorV3Interface(\r\n            0x694AA1769357215DE4FAC081bf1f309aDC325306)*/;\r\n        return pricefeed.version();\r\n    }\r\n    receive() external payable {\r\n        fund();\r\n     }\r\n     fallback() external payable{\r\n        fund();\r\n     }\r\n}"
+    }
+  },
+  "settings": {
+    "evmVersion": "paris",
+    "optimizer": {
+      "enabled": false,
+      "runs": 200
+    },
+    "outputSelection": {
+      "*": {
+        "*": [
+          "abi",
+          "evm.bytecode",
+          "evm.deployedBytecode",
+          "evm.methodIdentifiers",
+          "metadata",
+          "devdoc",
+          "userdoc",
+          "storageLayout",
+          "evm.gasEstimates"
+        ],
+        "": [
+          "ast"
+        ]
+      }
+    },
+    "metadata": {
+      "useLiteralContent": true
+    }
+  }
+}
