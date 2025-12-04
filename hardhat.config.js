@@ -18,6 +18,7 @@ import "@nomicfoundation/hardhat-verify"; */
 
 module.exports = {
   solidity: "0.8.28",
+  defaultNetwork:"hardhat",//判断本地网络
   networks:{
     sepolia:{
       url:sepolia_url,//alchemy中的url
