@@ -1,9 +1,9 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.24;
 
-contract Pair {
 
-    // 工厂合约地址（只允许工厂初始化交易对）
+contract Pair {
+// 工厂合约地址（只允许工厂初始化交易对）
     address public factory;
     // 交易对的两个代币
     address public token0;

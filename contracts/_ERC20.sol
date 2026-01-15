@@ -3,6 +3,7 @@ pragma solidity ^0.8.24;
 
 import {IERC20} from "@openzeppelin/contracts/token/ERC20/IERC20.sol";
 
+
 /*
   这个合约实现了ERC20接口，允许铸造(mint)、销毁(burn)代币。
   注意：当前mint/burn没有权限控制，生产环境请加onlyOwner。
@@ -42,7 +43,7 @@ contract mycontract is IERC20 {
         balanceOf[msg.sender]-= value;
         // 增加接收者余额
         balanceOf[to]+=value;
-        // 发事件，让前端或钱包监听
+        // 发事件，让前端或钱包监听emit的作用是方便调用者查询
         emit Transfer(msg.sender,to,value);
         return true;  
     }
@@ -81,7 +82,7 @@ contract mycontract is IERC20 {
 
     // 销毁代币，从调用者余额减少
     function burn(uint256 value) public  returns(bool){
-        require(balanceOf[msg.sender] >= value, "ERC20: insufficient balance");
+        require(balanceOf[msg.sender]>=value,"haha are you funning");
         balanceOf[msg.sender]-=value;
         totalSupply-=value;
         emit Transfer(msg.sender,address(0),value);

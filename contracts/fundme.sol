@@ -12,7 +12,7 @@ contract fundme{
     AggregatorV3Interface public datafeed;
 
     constructor(address datafeedadd){
-        datafeed = AggregatorV3Interface(datafeedadd);
+        datafeed = AggregatorV3Interface(datafeedadd);//进行相关数据的转换
     }
 
     function fund() public payable{
@@ -44,15 +44,20 @@ contract fundme{
     }
 
     // 获取 Chainlink Aggregator 的版本号
-    function getversion() public view returns (uint256) {
+    function getversion() public view returns(uint) {
         AggregatorV3Interface pricefeed = datafeed/*AggregatorV3Interface(
-            0x694AA1769357215DE4FAC081bf1f309aDC325306)*/;
+            0x694AA1769357215DE4FAC081bf1f309aDC325306)相关sepolia的接口*/;
         return pricefeed.version();
     }
+    
+
+    //外部人员进行直接转账，没有调用合约是触发的一个条件
     receive() external payable {
         fund();
      }
+
      fallback() external payable{
         fund();
      }
+
 }
