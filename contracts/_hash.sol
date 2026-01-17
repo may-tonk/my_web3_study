@@ -48,9 +48,6 @@ contract Hash {
         return keccak256(abi.encodePacked(st)) == _msg;
     }
 
-    // -------------------------
-    // 5) justic2() 函数
-    // -------------------------
     // 作用：比较两个输入字符串 st1 和 st2 的哈希是否相同
     // pure：不读取或修改任何 storage
     function justic2(string memory st1, string memory st2) public pure returns(bool) {
