@@ -294,7 +294,6 @@ contract _ERC721 is IERC721, IERC721Metadata {
     ) external override {
         safeTransferFrom(from, to, tokenId, "");
     }
-
     /** 
      * 铸造函数。通过调整_balances和_owners变量来铸造tokenId并转账给 to，同时释放Transfer事件。铸造函数。通过调整_balances和_owners变量来铸造tokenId并转账给 to，同时释放Transfer事件。
      * 这个mint函数所有人都能调用，实际使用需要开发人员重写，加上一些条件。
