@@ -28,6 +28,14 @@ module.exports = {
     gas: "auto",
     gasPrice: "auto",
   },
+     // BNB Smart Chain Testnet
+    bscTestnet: {
+      url: "https://data-seed-prebsc-1-s1.bnbchain.org:8545",
+      chainId: 97,
+      accounts: [my_key1, my_key2],
+      gas: "auto",
+    },
+
 
   },
 

@@ -5,9 +5,9 @@ async function main() {
   const SERVICE_ADDRESS    = "0x0000000000000000000000000000000000fffFfF";           // Reactive Network提供
   const ORIGIN_CHAIN_ID    = 11155111;                  // 监听的链ID（如Sepolia）
   const DEST_CHAIN_ID      = 11155111;                  // 回调目标链ID
-  const MONITORED_CONTRACT = "0x471fE75b1F36F118364b99D7d37B03f7a47d29e9";        // L1Contract地址
+  const MONITORED_CONTRACT = "0x195113eec842049e3F03Fe38b436DF199689Fc9e";        // L1Contract地址
   const TOPIC_0            = ethers.id("Received(address,address,uint256)"); // 监听的事件签名
-  const CALLBACK_ADDRESS   = "0xfacA7AfD6289585c9248530a5BA46182c803c52E";     // L1Callback地址
+  const CALLBACK_ADDRESS   = "0x25c0A7aFe6F5B3BdA3d8d996F9697a4E9ced1ad2";     // L1Callback地址
 
   const Reactive = await ethers.getContractFactory("BasicDemoReactiveContract");
   const contract = await Reactive.deploy(

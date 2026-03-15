@@ -4,7 +4,7 @@ async function main() {
   // BasicDemoL1Contract 不需要构造参数
   const Contract = await ethers.getContractFactory("BasicDemoL1Contract");
   const contract = await Contract.deploy();
-  await contract.waitForDeployment();
+  await contract.waitForDeployment(4);
 
   console.log("BasicDemoL1Contract deployed to:", await contract.getAddress());
 }
