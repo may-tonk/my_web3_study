@@ -16,17 +16,34 @@ const developmentChain = ["hardhat", "local"]
 // 导出这些变量，使得其他模块或脚本可以通过 require 或 import 引用这些常量。
 // 例如，在部署脚本或测试脚本中，可以直接使用 DECIMAL、INIT_VALUE、developmentChain
 
+const account1 = "0x03821460938885DCDBe111236A2da58607aB276D"
+
+const account2 = "0xC28c19E6081cCdcF94680662FeD408d1BF7D8c71"
+
+const Mail_Box_LASNA = "0x3a464f746D23Ab22155710f44dB16dcA53e0775E"
+
+const MailBox_BNB = "0xF9F6F5646F478d5ab4e20B0F910C92F1CCC9Cc6D" // 这是一个示例地址，实际地址可能需要根据部署环境进行修改
+
 const networkConfig = {
     11155111:{
         ethUsdDataFeed:"0x1b44F3514812d835EB1BDB0acB33d3fA3351Ee43"
     }
 }
 
+
+
+
+
 module.exports = {
     DECIMAL,
     INIT_VALUE,
     developmentChain,
-    networkConfig
+    networkConfig,
+    MailBox_BNB,
+    Mail_Box_LASNA,
+    account1,
+    account2
+
 }
 
 

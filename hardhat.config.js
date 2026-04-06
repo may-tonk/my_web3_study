@@ -21,6 +21,14 @@ module.exports = {
       accounts: [my_key1, my_key2],
       chainId: 11155111
     },
+
+      "cancun": {
+    url: "https://evmrpc-testnet.0g.ai",
+    chainId: 16602,
+    accounts: [my_key1, my_key2],
+    gas: "auto",
+    gasPrice: "auto",
+  },
      lasna: {
     url: "https://lasna-rpc.rnk.dev/",
     accounts: [my_key1, my_key2],

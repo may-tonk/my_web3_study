@@ -1,0 +1,15 @@
+{
+  "name": "WTF Dutch Auction #1",
+  "description": "Two-piece test collection for Dutch auction.",
+  "image": "ipfs://bafybeigpxkdywaog2t7b5rlhehw5izvybqkl4tilj25krhgnyqfdxcwnxa/1.png",
+  "attributes": [
+    {
+      "trait_type": "Edition",
+      "value": "1"
+    },
+    {
+      "trait_type": "Style",
+      "value": "Monochrome"
+    }
+  ]
+}
